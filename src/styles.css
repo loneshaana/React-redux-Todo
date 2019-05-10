@@ -31,3 +31,24 @@ button {
   text-transform: uppercase;
   text-decoration: line-through;
 }
+
+.active {
+  color: black;
+  font-size: 16px;
+  border: 2px solid black;
+  width: 10px;
+  height: 15px;
+  background-color: gray;
+}
+
+.inactive {
+  color: dimgrey;
+}
+
+.flat {
+  display: flex;
+}
+
+.box {
+  width: 33%;
+}

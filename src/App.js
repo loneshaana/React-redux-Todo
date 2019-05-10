@@ -25,7 +25,7 @@ class TodoApp extends React.Component {
   };
 
   render() {
-    const { allTodos, setVisibility } = this.props;
+    const { allTodos, setVisibility, filterBy } = this.props;
     return (
       <Provider store={this.props.store}>
         <div>
@@ -34,7 +34,7 @@ class TodoApp extends React.Component {
           <input className="myInput" placeholder="Add Todo" ref={inputRef} />
           <button onClick={this._add}>Add</button>
           <TodoItems todos={allTodos} changeStatus={this.changeStatus} />
-          <FilterLink setVisibility={setVisibility} />
+          <FilterLink setVisibility={setVisibility} filterBy={filterBy} />
         </div>
       </Provider>
     );
@@ -53,7 +53,8 @@ const getTodosBasedOnVisibility = state => {
 };
 
 const mapStateToProps = state => ({
-  allTodos: getTodosBasedOnVisibility(state)
+  allTodos: getTodosBasedOnVisibility(state),
+  filterBy: state.filterBy.filter
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -61,6 +62,7 @@ const mapDispatchToProps = dispatch => ({
   statusChange: id => dispatch(changeStatus(id)),
   setVisibility: value => dispatch(changeVisibility(value))
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
